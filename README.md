@@ -1,39 +1,47 @@
-**Dataset Source:**  
-[Kaggle: Software Defect Prediction Dataset](https://www.kaggle.com/datasets/mirzayasirabdullah07/software-defect-prediction-dataset)
-## Software Defect Prediction Dataset
+## Student Performance Dataset (UCI)
 
-This dataset is designed for machine learning-based software defect prediction and contains 60,000 software modules with 22+ key features and a binary target indicating the presence of defects. It combines code metrics, object-oriented metrics, process and development metrics, and quality/risk indicators to create a comprehensive, real-world–inspired dataset suitable for classification tasks.
+- Source: [UCI Machine Learning Repository — Student Performance](https://archive.ics.uci.edu/dataset/320/student+performance)
+- Domain: Secondary education performance in Portugal (Mathematics and Portuguese subjects)
+- Instances: 649; Features: 30 (plus 3 grade targets: G1, G2, G3)
+- Tasks: Classification and regression on final grade `G3`; note strong correlation between `G3`, `G2`, and `G1`
+- License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+- Files in this repo: `dataset/student-mat.csv`, `dataset/student-por.csv`, `dataset/student.txt`
 
-**Features include:**
-- Lines of Code
-- Cyclomatic Complexity
-- Number of Functions and Classes
-- Comment Density
-- Code Churn
-- Developer Experience
-- Commit Frequency
-- Test Coverage
-- Code Duplication
-- Static Analysis Warnings
-- Build Failures
-- Security Vulnerabilities
-- Performance Issues
-- ...and more
+This dataset includes demographic, social, and school-related attributes (e.g., study time, travel time, family support, alcohol consumption, absences) along with period grades `G1`, `G2`, and final grade `G3`. It is suitable for tasks such as predicting final grades, exploring feature importance, and comparing models under scenarios with and without prior grades.
 
-The target column, `defect`, indicates whether a module has a defect (1) or not (0), generated using realistic relationships between code complexity, historical defects, testing quality, and static analysis warnings.
+**Attributes (student-mat.csv and student-por.csv)**
+1. school - student's school (binary: "GP" - Gabriel Pereira or "MS" - Mousinho da Silveira)
+2. sex - student's sex (binary: "F" - female or "M" - male)
+3. age - student's age (numeric: from 15 to 22)
+4. address - student's home address type (binary: "U" - urban or "R" - rural)
+5. famsize - family size (binary: "LE3" - less or equal to 3 or "GT3" - greater than 3)
+6. Pstatus - parent's cohabitation status (binary: "T" - living together or "A" - apart)
+7. Medu - mother's education (numeric: 0 - none, 1 - primary education, 2 - 5th to 9th grade, 3 - secondary education, 4 - higher education)
+8. Fedu - father's education (numeric: 0 - none, 1 - primary education, 2 - 5th to 9th grade, 3 - secondary education, 4 - higher education)
+9. Mjob - mother's job (nominal: "teacher", "health", civil "services" such as administrative or police, "at_home", or "other")
+10. Fjob - father's job (nominal: "teacher", "health", civil "services" such as administrative or police, "at_home", or "other")
+11. reason - reason to choose this school (nominal: close to "home", school "reputation", "course" preference, or "other")
+12. guardian - student's guardian (nominal: "mother", "father", or "other")
+13. traveltime - home to school travel time (numeric: 1 - <15 min, 2 - 15 to 30 min, 3 - 30 min to 1 hour, 4 - >1 hour)
+14. studytime - weekly study time (numeric: 1 - <2 hours, 2 - 2 to 5 hours, 3 - 5 to 10 hours, 4 - >10 hours)
+15. failures - number of past class failures (numeric: n if 1<=n<3, else 4)
+16. schoolsup - extra educational support (binary: yes or no)
+17. famsup - family educational support (binary: yes or no)
+18. paid - extra paid classes within the course subject (Math or Portuguese) (binary: yes or no)
+19. activities - extra-curricular activities (binary: yes or no)
+20. nursery - attended nursery school (binary: yes or no)
+21. higher - wants to take higher education (binary: yes or no)
+22. internet - Internet access at home (binary: yes or no)
+23. romantic - with a romantic relationship (binary: yes or no)
+24. famrel - quality of family relationships (numeric: from 1 - very bad to 5 - excellent)
+25. freetime - free time after school (numeric: from 1 - very low to 5 - very high)
+26. goout - going out with friends (numeric: from 1 - very low to 5 - very high)
+27. Dalc - workday alcohol consumption (numeric: from 1 - very low to 5 - very high)
+28. Walc - weekend alcohol consumption (numeric: from 1 - very low to 5 - very high)
+29. health - current health status (numeric: from 1 - very bad to 5 - very good)
+30. absences - number of school absences (numeric: from 0 to 93)
+31. G1 - first period grade (numeric: 0 to 20)
+32. G2 - second period grade (numeric: 0 to 20)
+33. G3 - final grade (numeric: 0 to 20, output target)
 
-**Usability:**
-This dataset is ideal for training and evaluating machine learning and deep learning models such as Logistic Regression, Random Forest, XGBoost, Support Vector Machines, and Neural Networks. It can be used for academic research, portfolio projects, Kaggle notebooks, competitions, and software engineering studies, offering opportunities for feature importance analysis, model interpretability, and end-to-end ML pipeline demonstrations.
-
-While synthetically generated, the data is grounded in real-world software engineering metrics, providing a clean, rich, and realistic dataset that is ready for immediate use and designed to support high model accuracy. With its size (~7–8 MB) and 60,000 records, it balances usability, realism, and scale for robust experimentation and portfolio showcases.
-
-**License:** MIT
-
-**Tags:**
-Classification, Data Analytics, Artificial Intelligence, Categorical, Advanced
-
-**File:** `dataset/software_defect_prediction_dataset.csv` (4.63 MB)
-
-The CSV file contains a large-scale, real-world–inspired Software Defect Prediction dataset with 60,000 software modules and 22+ features capturing code metrics, object-oriented metrics, process metrics, and quality/risk indicators. The target column `defect` indicates whether a module contains a defect (1) or not (0). Features include Lines of Code, Cyclomatic Complexity, Number of Functions and Classes, Comment Density, Code Churn, Developer Experience, Commit Frequency, Test Coverage, Code Duplication, Static Analysis Warnings, Build Failures, Security Vulnerabilities, Performance Issues, and more.
-
-This dataset is ideal for machine learning and deep learning experiments, including Logistic Regression, Random Forest, XGBoost, Support Vector Machines, and Neural Networks. It is clean, well-structured, and ready for classification tasks, making it perfect for research, academic projects, portfolio building, and Kaggle notebooks.
+Note: 382 students appear in both subject datasets. They can be matched by identical attribute values; see `dataset/student.txt` and `dataset/student-merge.R` for details.
