@@ -1,47 +1,58 @@
-# Early Warning System for Student Mental Health
+# Predict Students' Dropout and Academic Success
 
-A research-oriented ML pipeline to flag students at risk of mental health decline early in the semester using synthetic questionnaire data. Includes XAI tooling to keep model behavior interpretable.
+## Overview
+This project uses machine learning to predict student dropout and academic success in higher education. The dataset, sourced from a Portuguese higher education institution, contains demographic, academic, and socio-economic information for 4,424 students across various undergraduate degrees. The goal is to identify students at risk of dropping out or failing, enabling early intervention.
 
-## Scope
-- Purpose: Predict high-distress risk from early-semester profile data to enable proactive support.
-- Data: Synthetic Student Mental Health and Burnout dataset (1,000,000 rows, 20 features).
+## Dataset
+- **Source:** UCI Machine Learning Repository ([DOI: 10.24432/C5MC89](https://doi.org/10.24432/C5MC89))
+- **Instances:** 4,424 students
+- **Features:** 36 (real, categorical, integer)
+- **Target:** Three categories — dropout, enrolled, graduate (imbalanced classes)
+- **No missing values**
+- **Recommended split:** 80% train, 20% test
 
-## Early input features
-Use only attributes available at semester start:
-- Socio-academic: Age, gender/sex, university.
-- Academic standing: Department/major, academic year/level.
-- Performance & support: Current CGPA, scholarship/waiver flag.
+### Variables
+The dataset includes:
+- Academic path (course, application mode/order, previous qualification)
+- Demographics (age, gender, nationality, marital status)
+- Socio-economic factors (parents' education/occupation, scholarship, tuition status)
+- Academic performance (grades, curricular units, evaluations)
 
-## Risk labels (targets)
-Derived from later questionnaire responses:
-- Anxiety risk: High scores (2/3) on nervousness or inability to stop worrying due to academics.
-- Stress risk: High frequency (3/4) of feeling upset or unable to control important academic affairs.
-- Depression risk: Persistent low mood, hopelessness, or concentration trouble.
-- Critical alert: Any positive response to thoughts of self-harm.
+See the [UCI dataset page](https://archive.ics.uci.edu/ml/datasets/Predict+Students%27+Dropout+and+Academic+Success) for full variable descriptions.
 
-## Modeling plan
-- Task: Binary classification per risk type (High vs Low) using early features.
-- Baselines: Logistic Regression; stronger models: Random Forest, XGBoost.
-- Imbalance handling: Class weights and SMOTE/SMOTE-NC; threshold tuning on precision-recall.
-- Evaluation: PR-AUC (primary), recall at fixed precision, confusion matrix, calibration (Brier score), AUROC (secondary).
+## Usage
+### Installation
+Install dependencies (see `requirements.txt` or use pip):
+```bash
+pip install pandas scikit-learn xgboost matplotlib seaborn
+```
 
-## XAI
-- Global: Feature importance (gain/permutation), partial dependence/ICE for top factors.
-- Local: SHAP (TreeExplainer/KernelExplainer) for case-level rationales; contrastive examples when feasible.
-- Reporting: Pair each prediction with a brief factor summary (e.g., top 3 SHAP contributors).
+### Data Loading Example
+```python
+import pandas as pd
+df = pd.read_csv('dataset/processed_dataset.csv')
+```
 
-## MLOps-lite workflow
-- Split: Train/validation/test (stratified) with a temporal split if available; keep a holdout.
-- Preprocess: Encode categoricals, scale numerics when needed, handle rare categories.
-- Train: Cross-validated hyperparameter search with n_jobs tuned to avoid over-parallelism.
-- Validate: Monitor PR-AUC, recall@precision, and calibration; check drift on key features.
-- Save: Persist model, encoder, and metrics to versioned artifacts; log configs and seeds.
+### Model Training Example
+See `notebooks/main.ipynb` for full workflow:
+- Data preprocessing
+- Feature selection (RFECV)
+- Model training (RandomForest, XGBoost)
+- Evaluation (accuracy, classification report, confusion matrix)
 
-## Ethical and safety notes
-- Synthetic data avoids PII, but treat outputs as sensitive; avoid deployment without institutional review.
-- Emphasize human-in-the-loop review for any alerts; this is a research prototype, not a clinical device.
+## Citation
+If you use this dataset, please cite:
 
-## Next steps
-- Add a data dictionary mapping each column to question text and scale.
-- Implement training notebook/script with metrics and SHAP plots.
-- Package inference + explanation into a simple API or batch scoring job with alert thresholds.
+M.V. Martins, D. Tolledo, J. Machado, L. M.T. Baptista, V. Realinho. (2021) "Early prediction of student’s performance in higher education: a case study" Trends and Applications in Information Systems and Technologies, vol.1, Advances in Intelligent Systems and Computing series. Springer. DOI: 10.1007/978-3-030-72657-7_16
+
+## License
+This dataset is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+
+## Keywords
+Academic performance, Imbalanced classes, Multi-class classification, Dropout prediction
+
+## Contact
+- Valentim Realinho, Instituto Politécnico de Portalegre
+- Mónica Vieira Martins, Instituto Politécnico de Portalegre
+- Jorge Machado, Instituto Politécnico de Portalegre
+- Luís Baptista, Instituto Politécnico de Portalegre
