@@ -43,5 +43,3 @@ This dataset includes demographic, social, and school-related attributes (e.g., 
 31. G1 - first period grade (numeric: 0 to 20)
 32. G2 - second period grade (numeric: 0 to 20)
 33. G3 - final grade (numeric: 0 to 20, output target)
-
-Note: 382 students appear in both subject datasets. They can be matched by identical attribute values; see `dataset/student.txt` and `dataset/student-merge.R` for details.
