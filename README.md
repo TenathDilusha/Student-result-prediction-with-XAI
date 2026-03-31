@@ -1,58 +1,39 @@
-# Predict Students' Dropout and Academic Success
+**Dataset Source:**  
+[Kaggle: Software Defect Prediction Dataset](https://www.kaggle.com/datasets/mirzayasirabdullah07/software-defect-prediction-dataset)
+## Software Defect Prediction Dataset
 
-## Overview
-This project uses machine learning to predict student dropout and academic success in higher education. The dataset, sourced from a Portuguese higher education institution, contains demographic, academic, and socio-economic information for 4,424 students across various undergraduate degrees. The goal is to identify students at risk of dropping out or failing, enabling early intervention.
+This dataset is designed for machine learning-based software defect prediction and contains 60,000 software modules with 22+ key features and a binary target indicating the presence of defects. It combines code metrics, object-oriented metrics, process and development metrics, and quality/risk indicators to create a comprehensive, real-world–inspired dataset suitable for classification tasks.
 
-## Dataset
-- **Source:** UCI Machine Learning Repository ([DOI: 10.24432/C5MC89](https://doi.org/10.24432/C5MC89))
-- **Instances:** 4,424 students
-- **Features:** 36 (real, categorical, integer)
-- **Target:** Three categories — dropout, enrolled, graduate (imbalanced classes)
-- **No missing values**
-- **Recommended split:** 80% train, 20% test
+**Features include:**
+- Lines of Code
+- Cyclomatic Complexity
+- Number of Functions and Classes
+- Comment Density
+- Code Churn
+- Developer Experience
+- Commit Frequency
+- Test Coverage
+- Code Duplication
+- Static Analysis Warnings
+- Build Failures
+- Security Vulnerabilities
+- Performance Issues
+- ...and more
 
-### Variables
-The dataset includes:
-- Academic path (course, application mode/order, previous qualification)
-- Demographics (age, gender, nationality, marital status)
-- Socio-economic factors (parents' education/occupation, scholarship, tuition status)
-- Academic performance (grades, curricular units, evaluations)
+The target column, `defect`, indicates whether a module has a defect (1) or not (0), generated using realistic relationships between code complexity, historical defects, testing quality, and static analysis warnings.
 
-See the [UCI dataset page](https://archive.ics.uci.edu/ml/datasets/Predict+Students%27+Dropout+and+Academic+Success) for full variable descriptions.
+**Usability:**
+This dataset is ideal for training and evaluating machine learning and deep learning models such as Logistic Regression, Random Forest, XGBoost, Support Vector Machines, and Neural Networks. It can be used for academic research, portfolio projects, Kaggle notebooks, competitions, and software engineering studies, offering opportunities for feature importance analysis, model interpretability, and end-to-end ML pipeline demonstrations.
 
-## Usage
-### Installation
-Install dependencies (see `requirements.txt` or use pip):
-```bash
-pip install pandas scikit-learn xgboost matplotlib seaborn
-```
+While synthetically generated, the data is grounded in real-world software engineering metrics, providing a clean, rich, and realistic dataset that is ready for immediate use and designed to support high model accuracy. With its size (~7–8 MB) and 60,000 records, it balances usability, realism, and scale for robust experimentation and portfolio showcases.
 
-### Data Loading Example
-```python
-import pandas as pd
-df = pd.read_csv('dataset/processed_dataset.csv')
-```
+**License:** MIT
 
-### Model Training Example
-See `notebooks/main.ipynb` for full workflow:
-- Data preprocessing
-- Feature selection (RFECV)
-- Model training (RandomForest, XGBoost)
-- Evaluation (accuracy, classification report, confusion matrix)
+**Tags:**
+Classification, Data Analytics, Artificial Intelligence, Categorical, Advanced
 
-## Citation
-If you use this dataset, please cite:
+**File:** `dataset/software_defect_prediction_dataset.csv` (4.63 MB)
 
-M.V. Martins, D. Tolledo, J. Machado, L. M.T. Baptista, V. Realinho. (2021) "Early prediction of student’s performance in higher education: a case study" Trends and Applications in Information Systems and Technologies, vol.1, Advances in Intelligent Systems and Computing series. Springer. DOI: 10.1007/978-3-030-72657-7_16
+The CSV file contains a large-scale, real-world–inspired Software Defect Prediction dataset with 60,000 software modules and 22+ features capturing code metrics, object-oriented metrics, process metrics, and quality/risk indicators. The target column `defect` indicates whether a module contains a defect (1) or not (0). Features include Lines of Code, Cyclomatic Complexity, Number of Functions and Classes, Comment Density, Code Churn, Developer Experience, Commit Frequency, Test Coverage, Code Duplication, Static Analysis Warnings, Build Failures, Security Vulnerabilities, Performance Issues, and more.
 
-## License
-This dataset is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
-
-## Keywords
-Academic performance, Imbalanced classes, Multi-class classification, Dropout prediction
-
-## Contact
-- Valentim Realinho, Instituto Politécnico de Portalegre
-- Mónica Vieira Martins, Instituto Politécnico de Portalegre
-- Jorge Machado, Instituto Politécnico de Portalegre
-- Luís Baptista, Instituto Politécnico de Portalegre
+This dataset is ideal for machine learning and deep learning experiments, including Logistic Regression, Random Forest, XGBoost, Support Vector Machines, and Neural Networks. It is clean, well-structured, and ready for classification tasks, making it perfect for research, academic projects, portfolio building, and Kaggle notebooks.
