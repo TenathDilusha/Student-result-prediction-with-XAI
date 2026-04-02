@@ -1,0 +1,216 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=black,
+	urlcolor=black
+}
+
+\title{\textbf{An Explainable AI-Driven Educational Data Mining Framework for Student Academic Performance Prediction Using Optimized Tree-Based Models with SHAP-Based Interpretability}}
+
+\author{
+Author Name(s) \\
+Department of Computer Science \\
+University Name \\
+City, Country \\
+\texttt{author.email@university.edu}
+}
+
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Predicting student academic performance is a critical task in educational data mining (EDM), enabling early intervention and improved learning outcomes. However, many machine learning models used for this purpose operate as black-box systems, limiting their interpretability and practical applicability in educational settings. To address this challenge, this study proposes an explainable AI-driven framework for student academic performance prediction using optimized tree-based models combined with SHAP (Shapley Additive Explanations) for interpretability.
+
+The proposed approach leverages the UCI Student Performance dataset and incorporates extensive data preprocessing, feature engineering, and feature selection to enhance predictive capability. Two powerful ensemble learning models, Random Forest and XGBoost, are optimized using Optuna to achieve improved performance. The models are evaluated using standard regression metrics including Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and coefficient of determination ($R^2$).
+
+To ensure transparency, SHAP is employed to analyze both global and local feature contributions, providing insights into the factors influencing student performance predictions. The experimental results demonstrate that the proposed framework achieves high predictive accuracy while maintaining interpretability, making it suitable for real-world educational applications. Furthermore, SHAP-based explanations reveal that prior academic performance, study time, and absence rates are among the most influential factors affecting student outcomes.
+
+Overall, this study highlights the effectiveness of integrating explainable artificial intelligence with machine learning for building transparent and reliable student performance prediction systems, contributing to the advancement of intelligent educational data mining and learning analytics.
+\end{abstract}
+
+\textbf{Keywords:} Educational Data Mining, Student Performance Prediction, Explainable AI, SHAP, Random Forest, XGBoost, Optuna, Learning Analytics
+
+\section{Introduction}
+Education plays a fundamental role in the development of individuals and societies. However, one of the persistent challenges faced by educational institutions is the variation in student academic performance. Students often exhibit different learning capabilities, study habits, and environmental influences, making it difficult to design a single teaching approach that suits all learners. As a result, identifying students who may underperform or excel has become an important research problem in modern education systems.
+
+Educational institutions are increasingly concerned with questions such as whether a student will achieve high academic performance, what factors influence their grades, and how early interventions can be applied to improve outcomes. Addressing these challenges requires intelligent systems capable of analyzing student data and providing meaningful predictions. Educational Data Mining (EDM) has emerged as an effective approach to uncover hidden patterns in educational datasets and support decision-making processes.
+
+Machine learning techniques have gained significant attention in this domain as they can learn patterns from historical data and predict future outcomes. These techniques enable the classification and regression of student performance based on various academic, social, and behavioral features. Predicting student performance using machine learning models allows educators to identify at-risk students early and implement targeted interventions to improve learning outcomes.
+
+Despite the success of machine learning models in prediction tasks, many models operate as black-box systems, making it difficult to interpret how predictions are made. This lack of transparency poses a challenge in educational contexts, where interpretability is crucial for gaining trust and actionable insights. To overcome this limitation, Explainable Artificial Intelligence (XAI) techniques such as SHAP have been introduced to provide both global and local explanations.
+
+In addition, hyperparameter optimization is critical to achieving high predictive performance. Techniques such as Optuna allow efficient exploration of the parameter space to improve model accuracy and generalization. When combined with feature engineering and feature selection techniques, these methods significantly enhance the performance of predictive models.
+
+This study proposes an explainable AI-driven EDM framework for predicting student academic performance using optimized tree-based models (Random Forest and XGBoost) with SHAP-based interpretability.
+
+The main contributions are as follows:
+\begin{itemize}[leftmargin=1.5em]
+	\item An optimized machine learning framework for student performance prediction using tree-based models.
+	\item Application of feature engineering and feature selection to improve predictive effectiveness.
+	\item Use of Optuna-based hyperparameter optimization for improved model performance.
+	\item Integration of SHAP for both global and local explainability.
+	\item Comparative analysis of multiple models to identify the most effective approach.
+\end{itemize}
+
+\section{Literature Review}
+Educational Data Mining has been widely explored for analyzing and predicting student academic performance using data-driven techniques. Early research primarily relied on statistical methods and simpler machine learning models. With increasing computational capability and data availability, more advanced machine learning methods have been adopted.
+
+Traditional algorithms such as Decision Trees, Support Vector Machines, and Na"{i}ve Bayes have been applied to student performance prediction. While useful, these approaches often face limitations in handling noisy data and capturing complex feature interactions. Ensemble methods, including Random Forest and Gradient Boosting, improved predictive performance by combining multiple weak learners.
+
+XGBoost has gained prominence due to its strong performance, regularization capability, and computational efficiency. Prior studies report that XGBoost often outperforms many classical machine learning methods for structured tabular prediction tasks.
+
+Feature engineering and feature selection have also proven essential in EDM workflows. Correlation analysis and model-based selection methods are commonly used to reduce dimensionality, remove irrelevant features, and improve both predictive power and interpretability.
+
+Hyperparameter optimization methods such as Grid Search and Random Search have long been used but are often computationally expensive. Bayesian optimization frameworks such as Optuna provide more efficient exploration of hyperparameter spaces and can improve model quality with lower computational overhead.
+
+Despite prediction performance gains, interpretability remains a key challenge in educational applications. Explainability techniques such as LIME and SHAP have been adopted to bridge this gap. SHAP is frequently preferred due to its strong theoretical foundation, consistency, and ability to provide global and local explanations.
+
+Although substantial progress has been made, relatively fewer studies combine high-performing models, efficient optimization, and robust explainability in a unified educational prediction framework. This study addresses that gap.
+
+\section{Methodology}
+\subsection{Approach Overview}
+The proposed framework includes the following stages: data preprocessing, feature engineering, feature selection, model training, hyperparameter optimization, model evaluation, and explainability analysis.
+
+Raw student data is cleaned and transformed into machine-learning-ready representations. Additional meaningful attributes are engineered, and feature selection is applied to retain the most informative variables. Random Forest and XGBoost are then trained and optimized using Optuna. The best-performing model is selected based on evaluation metrics and interpreted with SHAP.
+
+\subsection{Dataset Description}
+The dataset used is the UCI Student Performance dataset, containing demographic, family, behavioral, and academic information from Portuguese secondary school students.
+
+Dataset summary:
+\begin{itemize}[leftmargin=1.5em]
+	\item Number of instances: 1044
+	\item Number of input features: 33
+	\item Target variable: Final grade ($G3$)
+\end{itemize}
+
+\subsection{Data Preprocessing}
+Categorical variables were transformed using one-hot encoding, and binary attributes were mapped into numerical form. Ordinal variables such as study time and travel time were converted into approximate numerical durations to improve quantitative interpretability.
+
+Engineered features include:
+\begin{itemize}[leftmargin=1.5em]
+	\item \textit{avg\_parent\_edu}: average parental education level
+	\item \textit{total\_support}: aggregate educational support indicators
+	\item \textit{study\_per\_travel}: ratio of study time to travel time
+\end{itemize}
+
+Feature selection was performed using Random Forest importance scores. The processed dataset was split into training and testing sets with an 80:20 ratio.
+
+\subsection{Experimental Setup}
+Experiments were conducted in Python using Scikit-learn, XGBoost, Optuna, and SHAP. A 5-fold cross-validation strategy was applied during optimization to ensure robust and fair model comparison under consistent experimental conditions.
+
+\subsection{Models Used}
+\subsubsection{Random Forest Regressor}
+Random Forest builds multiple decision trees on bootstrapped subsets and averages their predictions:
+\begin{equation}
+\hat{y} = \frac{1}{N} \sum_{i=1}^{N} T_i(x)
+\end{equation}
+where $\hat{y}$ is the predicted value, $N$ is the number of trees, and $T_i(x)$ is the prediction from the $i$th tree.
+
+\subsubsection{XGBoost Regressor}
+XGBoost builds trees sequentially to minimize residual errors with regularization:
+\begin{equation}
+\mathcal{L} = \sum_{i=1}^{n} l(y_i, \hat{y}_i) + \sum_{k=1}^{K} \Omega(f_k)
+\end{equation}
+The prediction update rule at iteration $t$ is:
+\begin{equation}
+\hat{y}_i^{(t)} = \hat{y}_i^{(t-1)} + f_t(x_i)
+\end{equation}
+
+\subsection{Performance Metrics}
+Model performance was evaluated using RMSE, MAE, and $R^2$.
+
+\begin{equation}
+\mathrm{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}
+\end{equation}
+
+\begin{equation}
+\mathrm{MAE} = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|
+\end{equation}
+
+\begin{equation}
+R^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}
+\end{equation}
+
+Generalization gap was analyzed as:
+\begin{equation}
+\mathrm{Generalization\ Gap} = R^2_{\mathrm{train}} - R^2_{\mathrm{test}}
+\end{equation}
+
+\subsection{Explainable AI Technique}
+SHAP was used to interpret model predictions with additive feature attributions:
+\begin{equation}
+f(x) = \phi_0 + \sum_{i=1}^{n}\phi_i
+\end{equation}
+where $\phi_0$ is the base value and $\phi_i$ is the contribution of feature $i$.
+
+\subsubsection{Global Interpretability}
+Global interpretability was obtained through SHAP summary analysis to rank feature importance across the dataset.
+
+\subsubsection{Local Interpretability}
+Local interpretability was examined using SHAP force-plot style analysis for individual student predictions to identify feature-level positive and negative contributions.
+
+\section{Results}
+\subsection{Data Analysis}
+Exploratory analysis indicated that the target variable ($G3$) had a moderate spread. Prior grades ($G1$, $G2$) showed strong positive correlation with $G3$. Features such as study time, absences, and parental education also showed meaningful associations with final performance.
+
+\subsection{Comparative Model Performance}
+Both Random Forest and XGBoost demonstrated strong regression performance. XGBoost achieved better overall accuracy and generalization, reflected by lower RMSE/MAE and higher $R^2$.
+
+\subsection{Cross-Validation Results}
+The 5-fold cross-validation results were stable across folds with low variance, indicating robust model behavior and reduced sensitivity to specific train-test partitions.
+
+\subsection{SHAP-Based Explainability Results}
+Global SHAP analysis identified prior grades, study time, absences, parental education, and social behavior indicators as important contributors to prediction outcomes. Local SHAP analysis provided case-level explanations showing why specific students were predicted to perform better or worse.
+
+\section{Discussion}
+The findings demonstrate that optimized tree-based ensemble models are effective for student performance prediction. XGBoost outperformed Random Forest due to its sequential error-correction mechanism and regularization. Feature engineering improved predictive relevance by introducing informative derived attributes.
+
+Optuna-based tuning substantially improved model quality and generalization. SHAP improved model transparency by revealing both global and individual-level feature effects, increasing the practical value of model outputs for educators.
+
+One key limitation is the strong predictive influence of prior grades ($G1$, $G2$), which may introduce data leakage concerns in early-stage prediction settings where these values are unavailable. Additionally, the geographic scope of the dataset may limit external generalizability.
+
+\section{Conclusion}
+This study presented an explainable AI-driven EDM framework for student academic performance prediction using optimized Random Forest and XGBoost models. By integrating Optuna-based optimization and SHAP-based interpretability, the framework achieved strong predictive performance while maintaining transparency.
+
+The proposed approach is suitable for educational decision support, early intervention planning, and learning analytics applications. The work contributes to bridging the gap between high-performing predictive models and actionable model interpretability in education.
+
+\section*{References}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=1.5em]
+	\item Md. M. Islam, F. H. Sojib, M. F. H. Mihad, M. Hasan, and M. Rahman, ``The integration of explainable AI in Educational Data Mining for student academic performance prediction and support system,'' \textit{Telematics and Informatics Reports}, vol. 18, p. 100203, Jun. 2025, doi: \href{https://doi.org/10.1016/j.teler.2025.100203}{10.1016/j.teler.2025.100203}.
+
+	\item S. Boujmiraz, H. Darhmaoui, and A. Drissi El Maliani, ``Predicting student performance: A comprehensive review of machine learning, deep learning, and explainable AI approaches,'' \textit{Computers and Education: Artificial Intelligence}, vol. 10, p. 100548, Jun. 2026, doi: \href{https://doi.org/10.1016/j.caeai.2026.100548}{10.1016/j.caeai.2026.100548}.
+
+	\item W. Ahmed \textit{et al.}, ``Machine learning-based academic performance prediction with explainability for enhanced decision-making in educational institutions,'' \textit{Scientific Reports}, vol. 15, Art. no. 26879, Jul. 2025, doi: \href{https://doi.org/10.1038/s41598-025-12353-4}{10.1038/s41598-025-12353-4}.
+
+	\item A. Ijaz and S. Hussain, ``Explainable AI framework for predicting student academic success through personality analysis,'' \textit{Machine Learning for Human Intelligence}, 2025, doi: \href{https://doi.org/10.65492/01/302/2025/29}{10.65492/01/302/2025/29}.
+
+	\item T.-H. Tao, ``Educational data mining for student performance prediction: Feature selection and model evaluation,'' \textit{Journal of Electrical Systems}, Apr. 2024, doi: \href{https://doi.org/10.52783/jes.3434}{10.52783/jes.3434}.
+
+	\item B. Ujkani, D. Minkovska, and N. Hinov, ``Course success prediction and early identification of at-risk students using explainable artificial intelligence,'' \textit{Electronics}, vol. 13, no. 21, p. 4157, Oct. 2024, doi: \href{https://doi.org/10.3390/electronics13214157}{10.3390/electronics13214157}.
+
+	\item E. Ofori and D. K. Dake, ``Explainable artificial intelligence in LSTM transformer models for student performance analysis,'' \textit{Discover Computing}, vol. 28, p. 313, Dec. 2025, doi: \href{https://doi.org/10.1007/s10791-025-09814-9}{10.1007/s10791-025-09814-9}.
+
+	\item P. Dabhade, R. Agarwal, K. P. Alameen, A. T. Fathima, and G. Gopakumar, ``Educational data mining for predicting students' academic performance using machine learning algorithms,'' \textit{Materials Today: Proceedings}, vol. 47, pp. 5260--5267, 2021.
+\end{enumerate}
+
+\end{document}
