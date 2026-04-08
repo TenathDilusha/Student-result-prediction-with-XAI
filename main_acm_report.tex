@@ -1,57 +1,27 @@
-\documentclass[12pt,a4paper]{article}
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{times}
-\usepackage{geometry}
-\usepackage{setspace}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs}
-\usepackage{enumitem}
-\usepackage{hyperref}
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
 \usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{float}
 
-\geometry{margin=1in}
-\onehalfspacing
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.6em}
-
-\hypersetup{
-	colorlinks=true,
-	linkcolor=black,
-	citecolor=black,
-	urlcolor=black
-}
-
-
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{setspace}
-
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\begin{titlepage}
-    \centering
+\title{An Explainable AI-Driven Educational Data Mining Framework for Student Academic Performance Prediction Using Optimized Tree-Based Models with SHAP-Based Interpretability}
 
-    % Title at the top
-    {\LARGE \bfseries 
-    An Explainable AI-Driven Educational Data Mining Framework for Student Academic Performance Prediction Using Optimized Tree-Based Models with SHAP-Based Interpretability
-    \par}
+\author{\IEEEauthorblockN{Dilusha Chandrasiri}
+\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+\textit{University of Moratuwa}\\
+Kurunegala, Sri Lanka \\
+dilushac.23@cse.mrt.ac.lk}
+}
 
-    \vfill
-
-    % Author details at the bottom
-    {\large
-    Dilusha Chandrasiri\\
-    University of Moratuwa\\
-    Kurunegala, Sri Lanka\\
-    \texttt{tenathdilusha@gmail.com}\\
-    April 2026
-    }
-
-\end{titlepage}
-
-\newpage
+\maketitle
 
 \begin{abstract}
 Predicting student academic performance is a critical task in educational data mining (EDM), enabling early intervention and improved learning outcomes. However, many machine learning models used for this purpose operate as black-box systems, limiting their interpretability and practical applicability in educational settings. To address this challenge, this study proposes an explainable AI-driven framework for student academic performance prediction using optimized tree-based models combined with SHAP (Shapley Additive Explanations) for interpretability. 
@@ -60,7 +30,7 @@ The proposed approach leverages the UCI Student Performance dataset and incorpor
 
 To ensure transparency, SHAP is employed to analyse both global and local feature contributions, providing insights into the factors influencing student performance predictions. The experimental results demonstrate that the proposed framework achieves high predictive accuracy while maintaining interpretability, making it suitable for real-world educational applications. Furthermore, the SHAP-based explanations reveal that prior academic performance, study time, and absence rates are among the most influential factors affecting student outcomes. 
 
-Overall, this study highlights the effectiveness of integrating explainable artificial intelligence with machine learning for building transparent and reliable student performance prediction systems, contributing to the advancement of intelligent educational data mining and learning analytics. 
+Overall, this study highlights the effectiveness of integrating explainable artificial intelligence with machine learning to build transparent and reliable student performance prediction systems, thereby advancing intelligent educational data mining and learning analytics. 
 \end{abstract}
 
 \textbf{Keywords:} Educational Data Mining, Student Performance Prediction, Explainable AI, SHAP, Random Forest, XGBoost, Optuna, Learning Analytics
@@ -68,7 +38,7 @@ Overall, this study highlights the effectiveness of integrating explainable arti
 \newpage
 
 \section{Introduction}
-Education plays a fundamental role in the development of individuals and societies. However, one of the persistent challenges faced by educational institutions is the variation in student academic performance. Students often exhibit different learning capabilities, study habits, and environmental influences, making it difficult to design a single teaching approach that suits all learners. As a result, identifying students who may underperform or excel has become an important research problem in modern education systems. 
+Education plays a fundamental role in the development of individuals and societies. However, one persistent challenge for educational institutions is the variation in students' academic performance. Students often exhibit different learning capabilities, study habits, and environmental influences, making it difficult to design a single teaching approach that suits all learners. As a result, identifying students who may underperform or excel has become an important research problem in modern education systems. 
 
 Educational institutions are increasingly concerned with questions such as whether a student will achieve high academic performance, what factors influence their grades, and how early interventions can be applied to improve outcomes. Addressing these challenges requires intelligent systems capable of analysing student data and providing meaningful predictions. Educational Data Mining (EDM) has emerged as an effective approach to uncover hidden patterns in educational datasets and support decision-making processes. 
 
@@ -116,9 +86,9 @@ This study proposes an Explainable AI-driven Educational Data Mining (EDM) frame
 
 Initially, raw student data is cleaned and transformed into a suitable format for machine learning models. Feature engineering techniques are applied to derive meaningful attributes, followed by feature selection to retain the most relevant variables. Two tree-based machine learning models, Random Forest and XGBoost are trained and optimised using Optuna. The best-performing model is then selected based on evaluation metrics. Finally, SHAP (Shapley Additive Explanations) is used to interpret the model’s predictions at both global and local levels. 
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{./images/ai.png}
+    \includegraphics[width=\columnwidth]{./images/ai.png}
     \caption{Experimental Workflow}
     \label{fig:example}
 \end{figure}
@@ -262,10 +232,10 @@ In addition to these metrics, the generalization gap was analyzed to assess the 
 \text{Generalization Gap} = R^2_{\text{train}} - R^2_{\text{test}}
 \end{equation}
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/bar.png}
-    \caption{Comparison of Model Accuracy}
+    \includegraphics[width=\columnwidth]{./images/bar.png}
+    \caption{Experimental Workflow}
     \label{fig:example}
 \end{figure}
 
@@ -293,9 +263,10 @@ In addition to global insights, SHAP was used to explain individual predictions 
 
 This level of interpretability is particularly useful in educational settings, where understanding individual student performance is crucial. For example, it allows educators to analyze why a particular student is predicted to perform poorly and take corrective actions accordingly. 
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{./images/image4.png}
+    \includegraphics[width=\columnwidth]{./images/image4.png}
+    \caption{Experimental Workflow}
     \label{fig:example}
 \end{figure}
 
@@ -306,21 +277,18 @@ Before model training, an exploratory data analysis (EDA) was conducted to under
 
 Other variables, including study time, absences, parental education, and support systems, demonstrated varying degrees of correlation with student performance. For instance, higher study time and better family support were generally associated with improved academic outcomes, while higher absence rates negatively impacted performance. 
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./images/image5.png}
-        \caption{Distribution of target variable G3}
-        \label{fig:xgb}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./images/image6.png}
-        \caption{Correlation heatmap}
-        \label{fig:rf}
-    \end{minipage}
+    \includegraphics[width=\columnwidth]{./images/image5.png}
+    \caption{Experimental Workflow}
+    \label{fig:example}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{./images/image6.png}
+    \caption{Experimental Workflow}
+    \label{fig:example}
 \end{figure}
 
 \subsection{Results of Classifiers}
@@ -328,9 +296,10 @@ The performance of the two models Random Forest and XGBoost was evaluated using 
 
 XGBoost achieved a lower RMSE and MAE, indicating smaller prediction errors, and a higher R² score, suggesting better explanatory power. This superior performance can be attributed to its boosting mechanism, which sequentially minimizes prediction errors and captures complex feature interactions more effectively than Random Forest. 
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{./images/image7.png}
+    \includegraphics[width=\columnwidth]{./images/image7.png}
+    \caption{Experimental Workflow}
     \label{fig:example}
 \end{figure}
 
@@ -347,9 +316,10 @@ A 5-fold cross-validation strategy was employed during model training to ensure 
 The cross-validation scores were consistent across folds, indicating that the models generalize well to unseen data. The low variance in performance metrics suggests that the models are stable and not overly sensitive to specific training samples. 
 
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{./images/image8.png}
+    \includegraphics[width=\columnwidth]{./images/image8.png}
+    \caption{Experimental Workflow}
     \label{fig:example}
 \end{figure}
 
@@ -371,19 +341,18 @@ The SHAP summary plots revealed that the most influential features in predicting
 
 Features with positive SHAP values contributed to higher predicted grades, while negative values indicated a decrease in predicted performance.
 
-\begin{figure}[htpb]
+\begin{figure}[H]
     \centering
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./images/image2.png}
-        \label{fig:image2}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{./images/image3.png}
-        \label{fig:image3}
-    \end{minipage}
+    \includegraphics[width=\columnwidth]{./images/image2.png}
+    \caption{Experimental Workflow}
+    \label{fig:example}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\columnwidth]{./images/image3.png}
+    \caption{Experimental Workflow}
+    \label{fig:example}
 \end{figure}
 
 \subsubsection{Local Explanation}
@@ -430,7 +399,6 @@ Third, the framework can be extended into a real-time decision support system or
 
 Furthermore, exploring fairness and bias in machine learning models is an important direction. Ensuring that predictions are unbiased across different demographic groups is critical for ethical AI applications in education. 
 
-\newpage
 
 \begin{thebibliography}{00}
 
